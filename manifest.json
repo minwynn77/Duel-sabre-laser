@@ -1,0 +1,13 @@
+{
+  "name": "Duel Sabre Laser",
+  "short_name": "Duel Sabre",
+  "description": "Compteur de points PWA pour compétitions de duel au sabre laser.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f4f6",
+  "theme_color": "#111827",
+  "icons": [
+    {"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
