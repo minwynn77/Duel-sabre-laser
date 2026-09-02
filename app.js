@@ -164,27 +164,22 @@ function showFinish(reason) {
   $("finalRed").textContent = scores.red;
 
   $("winnerTitle").textContent = scores.blue > scores.red
-  ? "🏆 Victoire du BLEU !"
-  : scores.red > scores.blue
-    ? "🏆 Victoire du ROUGE !"
-    : "🤝 Égalité !";
+    ? `🏆 Victoire de ${settings.blueName} !`
+    : scores.red > scores.blue
+      ? `🏆 Victoire de ${settings.redName} !`
+      : "🤝 Égalité !";
 
-$("winnerMessage").textContent = scores.blue > scores.red
-  ? "🔵 Le combattant Bleu remporte le combat !"
-  : scores.red > scores.blue
-    ? "🔴 Le combattant Rouge remporte le combat !"
-    : "Les deux combattants terminent à égalité.";
+  $("winnerMessage").textContent = scores.blue > scores.red
+    ? `🔵 ${settings.blueName} remporte le combat !`
+    : scores.red > scores.blue
+      ? `🔴 ${settings.redName} remporte le combat !`
+      : "Les deux combattants terminent à égalité.";
 
-  if (scores.blue > scores.red) {
-    winnerTitle.textContent = "🏆 Victoire du BLEU !";
-    winnerMessage.textContent = "🔵 Le combattant Bleu remporte le combat !";
-  } else if (scores.red > scores.blue) {
-    winnerTitle.textContent = "🏆 Victoire du ROUGE !";
-    winnerMessage.textContent = "🔴 Le combattant Rouge remporte le combat !";
-  } else {
-    winnerTitle.textContent = "🤝 Égalité !";
-    winnerMessage.textContent = "Les deux combattants terminent à égalité.";
-  }
+  showStatus(reason);
+  render();
+
+  if (!$("finishDialog").open) $("finishDialog").showModal();
+}
 
   showStatus(reason);
   render();
