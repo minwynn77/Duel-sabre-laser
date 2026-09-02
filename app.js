@@ -208,4 +208,25 @@ function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show")
 
 window.addEventListener("beforeunload",()=>stopTimer());
 if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+
+// Commandes des boutons
+$("startBtn").onclick = startTimer;
+$("pauseBtn").onclick = pauseTimer;
+$("resetBtn").onclick = resetCombat;
+
+$("correctBtn").onclick = () => {
+  finishedPending = false;
+  $("finishDialog").close();
+  showStatus("Score à corriger");
+  render();
+};
+
+$("validateBtn").onclick = () => {
+  finishedPending = false;
+  combatValidated = true;
+  $("finishDialog").close();
+  showStatus("Combat terminé et score validé");
+  render();
+};
+
 render();
