@@ -153,21 +153,31 @@ document.querySelectorAll(".fighter").forEach(panel=>{
 });
 
 function showFinish(reason) {
-  finishedPending=true; stopTimer();
-  $("finalBlue").textContent=scores.blue; $("finalRed").textContent=scores.red;
+  finishedPending = true;
+  stopTimer();
+
+  $("finalBlue").textContent = scores.blue;
+  $("finalRed").textContent = scores.red;
+
+  const winnerTitle = $("winnerTitle");
+  const winnerMessage = $("winnerMessage");
+
+  if (scores.blue > scores.red) {
+    winnerTitle.textContent = "🏆 Victoire du BLEU !";
+    winnerMessage.textContent = "🔵 Le combattant Bleu remporte le combat !";
+  } else if (scores.red > scores.blue) {
+    winnerTitle.textContent = "🏆 Victoire du ROUGE !";
+    winnerMessage.textContent = "🔴 Le combattant Rouge remporte le combat !";
+  } else {
+    winnerTitle.textContent = "🤝 Égalité !";
+    winnerMessage.textContent = "Les deux combattants terminent à égalité.";
+  }
+
   showStatus(reason);
   render();
+
   if (!$("finishDialog").open) $("finishDialog").showModal();
 }
-$("startBtn").onclick=startTimer;
-$("pauseBtn").onclick=pauseTimer;
-$("resetBtn").onclick=resetCombat;
-$("correctBtn").onclick=()=>{finishedPending=false;$("finishDialog").close();showStatus("Correction possible — utilisez un appui long.");render();};
-$("validateBtn").onclick=()=>{
-  finishedPending=false; combatValidated=true; $("finishDialog").close(); stopTimer();
-  showStatus("Combat validé");
-  render();
-};
 
 function openSettings() {
   if (running || finishedPending || combatValidated) { toast("Les paramètres sont verrouillés pendant ce combat."); return; }
