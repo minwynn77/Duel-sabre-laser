@@ -266,6 +266,23 @@ $("correctBtn").onclick = () => {
 };
 
 $("validateBtn").onclick = () => {
+  const winner = scores.blue > scores.red
+    ? `🏆 ${settings.blueName}`
+    : scores.red > scores.blue
+      ? `🏆 ${settings.redName}`
+      : "🤝 Égalité";
+
+  history.unshift({
+    date: new Date().toLocaleString("fr-FR"),
+    blueName: settings.blueName,
+    redName: settings.redName,
+    blueScore: scores.blue,
+    redScore: scores.red,
+    winner: winner
+  });
+
+  saveHistory();
+
   finishedPending = false;
   combatValidated = true;
   $("finishDialog").close();
