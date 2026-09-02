@@ -208,6 +208,8 @@ $("settingsForm").addEventListener("submit",e=>{
   e.preventDefault();
   const f=e.currentTarget;
   for(const c of ["blue","red"]) for(const z of ["head","torso","arm","leg","hand","exit"]) settings[c][z]=Number(f.elements[`${c}-${z}`].value);
+  settings.blueName = f.elements.blueName.value.trim() || "BLEU";
+settings.redName = f.elements.redName.value.trim() || "ROUGE";
   settings.duration=Math.max(.1,Number(f.elements.duration.value)||3);
   settings.limitBlue=Number(f.elements.limitBlue.value)||30;
 settings.limitRed=Number(f.elements.limitRed.value)||30;
