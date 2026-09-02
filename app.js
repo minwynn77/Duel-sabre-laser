@@ -17,6 +17,7 @@ let timerId = null;
 let running = false;
 let finishedPending = false;
 let combatValidated = false;
+let history = JSON.parse(localStorage.getItem("duel-sabre-history") || "[]");
 
 const $ = id => document.getElementById(id);
 
@@ -27,7 +28,50 @@ function loadSettings() {
   } catch { return structuredClone(DEFAULTS); }
 }
 function saveSettings() { localStorage.setItem("duel-sabre-settings", JSON.stringify(settings)); }
+function saveHistory() {
+  localStorage.setItem("duel-sabre-history", JSON.stringify(history));
+}
 
+function renderHistory() {
+  const list = $("historyList");
+
+  if (!history.length) {
+    list.innerHTML = "<p class=\"hint\">Aucun combat enregistré.</p>";
+    return;
+  }
+
+  list.innerHTML = history.map((combat, index) => `
+    <div class="history-item">
+      <div>
+        <strong>Combat ${history.length - index}</strong>
+        <small>${combat.date}</small>
+      </div>
+
+      <div class="history-score">
+        <span>🔵 ${combat.blueName} : <strong>${combat.blueScore}</strong></span>
+        <span>🔴 ${combat.redName} : <strong>${combat.redScore}</strong></span>
+      </div>
+
+      <div class="history-winner">${combat.winner}</div>
+
+      <button class="delete-history" data-index="${index}" aria-label="Supprimer ce combat">
+        🗑️
+      </button>
+    </div>
+  `).join("");
+
+  document.querySelectorAll(".delete-history").forEach(button => {
+    button.onclick = () => {
+      const index = Number(button.dataset.index);
+
+      if (confirm("Supprimer ce combat de l'historique ?")) {
+        history.splice(index, 1);
+        saveHistory();
+        renderHistory();
+      }
+    };
+  });
+}
 function formatTime(ms) {
   ms = Math.max(0, ms);
   const total = Math.ceil(ms / 1000);
