@@ -37,8 +37,8 @@ function render() {
   $("timer").textContent = formatTime(remainingMs);
   $("blueScore").textContent = scores.blue;
   $("redScore").textContent = scores.red;
-  $("blueLimit").textContent = settings.limitBlue;
-  $("redLimit").textContent = settings.limitRed;
+  $("blueLimit").textContent = settings.limit;
+$("redLimit").textContent = settings.limit;
   $("blueExitValue").textContent = signed(settings.blue.exit);
   $("redExitValue").textContent = signed(settings.red.exit);
   $("pauseBtn").disabled = !running;
