@@ -162,7 +162,20 @@
       </div>
     </div>
   </dialog>
+<dialog id="historyDialog">
+  <div class="history">
+    <div class="dialog-head">
+      <h2>📋 Historique des combats</h2>
+      <button id="closeHistoryBtn" class="close-btn" aria-label="Fermer">✕</button>
+    </div>
 
+    <div id="historyList"></div>
+
+    <button id="clearHistoryBtn" class="control reset">
+      🗑️ Vider l'historique
+    </button>
+  </div>
+</dialog>
   <div id="toast" class="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
