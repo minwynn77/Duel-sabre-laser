@@ -30,7 +30,7 @@
     <section class="fighters">
       <article class="fighter blue" id="bluePanel">
         <div class="fighter-head">
-          <span class="fighter-name">🔵 BLEU</span>
+          <span class="fighter-name">🔵 <span id="blueName">BLEU</span></span>
           <span class="score"><span id="blueScore">0</span> / <span id="blueLimit">0</span></span>
         </div>
         <div class="mannequin-wrap">
@@ -63,7 +63,7 @@
 
       <article class="fighter red" id="redPanel">
         <div class="fighter-head">
-          <span class="fighter-name">🔴 ROUGE</span>
+          <span class="fighter-name">🔴 <span id="redName">ROUGE</span></span>
           <span class="score"><span id="redScore">0</span> / <span id="redLimit">0</span></span>
         </div>
         <div class="mannequin-wrap">
@@ -125,6 +125,15 @@
         </fieldset>
       </div>
 
+      <div class="names-settings">
+  <label>🔵 Nom du combattant Bleu
+    <input type="text" name="blueName" maxlength="20" placeholder="BLEU">
+  </label>
+
+  <label>🔴 Nom du combattant Rouge
+    <input type="text" name="redName" maxlength="20" placeholder="ROUGE">
+  </label>
+</div>
       <div class="global-settings">
   <label>Durée du combat (minutes) <input type="number" min="0.1" step="0.1" name="duration"></label>
   <label>🔵 Points pour gagner — Bleu <input type="number" min="1" step="1" name="limitBlue"></label>
