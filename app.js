@@ -257,16 +257,17 @@ if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.s
 $("startBtn").onclick = startTimer;
 $("pauseBtn").onclick = pauseTimer;
 $("resetBtn").onclick = resetCombat;
-$("historyBtn").onclick = () => {
+
+$("historyBtn").addEventListener("click", () => {
   renderHistory();
   $("historyDialog").showModal();
-};
+});
 
-$("closeHistoryBtn").onclick = () => {
+$("closeHistoryBtn").addEventListener("click", () => {
   $("historyDialog").close();
-};
+});
 
-$("clearHistoryBtn").onclick = () => {
+$("clearHistoryBtn").addEventListener("click", () => {
   if (!history.length) {
     toast("L'historique est déjà vide.");
     return;
@@ -278,7 +279,7 @@ $("clearHistoryBtn").onclick = () => {
     renderHistory();
     toast("Historique supprimé.");
   }
-};
+});
 
 $("correctBtn").onclick = () => {
   finishedPending = false;
