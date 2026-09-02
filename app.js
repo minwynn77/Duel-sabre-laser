@@ -257,6 +257,28 @@ if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.s
 $("startBtn").onclick = startTimer;
 $("pauseBtn").onclick = pauseTimer;
 $("resetBtn").onclick = resetCombat;
+$("historyBtn").onclick = () => {
+  renderHistory();
+  $("historyDialog").showModal();
+};
+
+$("closeHistoryBtn").onclick = () => {
+  $("historyDialog").close();
+};
+
+$("clearHistoryBtn").onclick = () => {
+  if (!history.length) {
+    toast("L'historique est déjà vide.");
+    return;
+  }
+
+  if (confirm("Supprimer tout l'historique des combats ?")) {
+    history = [];
+    saveHistory();
+    renderHistory();
+    toast("Historique supprimé.");
+  }
+};
 
 $("correctBtn").onclick = () => {
   finishedPending = false;
