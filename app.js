@@ -181,12 +181,6 @@ function showFinish(reason) {
   if (!$("finishDialog").open) $("finishDialog").showModal();
 }
 
-  showStatus(reason);
-  render();
-
-  if (!$("finishDialog").open) $("finishDialog").showModal();
-}
-
 function openSettings() {
   if (running || finishedPending || combatValidated) { toast("Les paramètres sont verrouillés pendant ce combat."); return; }
   const f=$("settingsForm");
