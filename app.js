@@ -2,7 +2,8 @@ const DEFAULTS = {
   blue: {head:2, torso:5, arm:3, leg:3, hand:1, exit:-2},
   red:  {head:2, torso:5, arm:3, leg:3, hand:1, exit:-2},
   duration:3,
-  limit:30
+limitBlue:30,
+limitRed:30
 };
 
 let settings = loadSettings();
@@ -116,7 +117,7 @@ function addHit(color, zone) {
   counts[color][zone]++;
   scores[color]+=settings[color][zone];
   render();
-  if (scores[color] >= settings.limit) {
+  if (scores[color] >= settings[color === "blue" ? "limitBlue" : "limitRed"]) {
     if (running) stopTimer();
     beep("limit"); showFinish(`${color==="blue"?"Bleu":"Rouge"} a atteint la limite`);
   }
@@ -170,7 +171,9 @@ function openSettings() {
   if (running || finishedPending || combatValidated) { toast("Les paramètres sont verrouillés pendant ce combat."); return; }
   const f=$("settingsForm");
   for(const c of ["blue","red"]) for(const z of ["head","torso","arm","leg","hand","exit"]) f.elements[`${c}-${z}`].value=settings[c][z];
-  f.elements.duration.value=settings.duration; f.elements.limit.value=settings.limit;
+  f.elements.duration.value=settings.duration;
+f.elements.limitBlue.value=settings.limitBlue;
+f.elements.limitRed.value=settings.limitRed;
   $("settingsDialog").showModal();
 }
 $("settingsBtn").onclick=openSettings;
@@ -179,7 +182,8 @@ $("settingsForm").addEventListener("submit",e=>{
   const f=e.currentTarget;
   for(const c of ["blue","red"]) for(const z of ["head","torso","arm","leg","hand","exit"]) settings[c][z]=Number(f.elements[`${c}-${z}`].value);
   settings.duration=Math.max(.1,Number(f.elements.duration.value)||3);
-  settings.limit=Number(f.elements.limit.value)||30;
+  settings.limitBlue=Number(f.elements.limitBlue.value)||30;
+settings.limitRed=Number(f.elements.limitRed.value)||30;
   saveSettings(); remainingMs=settings.duration*60000; render(); $("settingsDialog").close(); toast("Paramètres enregistrés.");
 });
 function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800);}
