@@ -1,4 +1,4 @@
-const CACHE = "duel-sabre-v1";
+const CACHE = "duel-sabre-v2";
 const ASSETS = [
   "./",
   "./index.html",
