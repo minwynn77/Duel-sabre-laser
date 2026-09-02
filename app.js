@@ -159,8 +159,17 @@ function showFinish(reason) {
   $("finalBlue").textContent = scores.blue;
   $("finalRed").textContent = scores.red;
 
-  const winnerTitle = $("winnerTitle");
-  const winnerMessage = $("winnerMessage");
+  $("winnerTitle").textContent = scores.blue > scores.red
+  ? "🏆 Victoire du BLEU !"
+  : scores.red > scores.blue
+    ? "🏆 Victoire du ROUGE !"
+    : "🤝 Égalité !";
+
+$("winnerMessage").textContent = scores.blue > scores.red
+  ? "🔵 Le combattant Bleu remporte le combat !"
+  : scores.red > scores.blue
+    ? "🔴 Le combattant Rouge remporte le combat !"
+    : "Les deux combattants terminent à égalité.";
 
   if (scores.blue > scores.red) {
     winnerTitle.textContent = "🏆 Victoire du BLEU !";
