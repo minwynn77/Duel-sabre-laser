@@ -1,9 +1,11 @@
 const DEFAULTS = {
   blue: {head:2, torso:5, arm:3, leg:3, hand:1, exit:-2},
   red:  {head:2, torso:5, arm:3, leg:3, hand:1, exit:-2},
+  blueName:"BLEU",
+  redName:"ROUGE",
   duration:3,
-limitBlue:30,
-limitRed:30
+  limitBlue:30,
+  limitRed:30
 };
 
 let settings = loadSettings();
@@ -37,6 +39,8 @@ function render() {
   $("timer").textContent = formatTime(remainingMs);
   $("blueScore").textContent = scores.blue;
   $("redScore").textContent = scores.red;
+  $("blueName").textContent = settings.blueName;
+  $("redName").textContent = settings.redName;
   $("blueLimit").textContent = settings.limitBlue;
   $("redLimit").textContent = settings.limitRed;
   $("blueExitValue").textContent = signed(settings.blue.exit);
@@ -192,6 +196,8 @@ function openSettings() {
   if (running || finishedPending || combatValidated) { toast("Les paramètres sont verrouillés pendant ce combat."); return; }
   const f=$("settingsForm");
   for(const c of ["blue","red"]) for(const z of ["head","torso","arm","leg","hand","exit"]) f.elements[`${c}-${z}`].value=settings[c][z];
+  f.elements.blueName.value=settings.blueName;
+f.elements.redName.value=settings.redName;
   f.elements.duration.value=settings.duration;
 f.elements.limitBlue.value=settings.limitBlue;
 f.elements.limitRed.value=settings.limitRed;
