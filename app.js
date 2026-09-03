@@ -912,7 +912,29 @@ $("closeHistoryBtn").addEventListener(
 $("clearHistoryBtn").addEventListener(
   "click",
   () => {
-    /* Réinitialisation des statistiques */
+
+    if (!history.length) {
+      toast("L'historique est déjà vide.");
+      return;
+    }
+
+    if (
+      confirm(
+        "Supprimer tout l'historique des combats ?"
+      )
+    ) {
+      history = [];
+
+      saveHistory();
+
+      renderHistory();
+
+      toast("Historique supprimé.");
+    }
+  }
+);
+
+/* Réinitialisation des statistiques */
 
 $("resetStatsBtn").addEventListener(
   "click",
