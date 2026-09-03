@@ -170,7 +170,16 @@
       <h2>📋 Historique des combats</h2>
       <button id="closeHistoryBtn" class="close-btn" aria-label="Fermer">✕</button>
     </div>
-    <dialog id="statsDialog">
+
+    <div id="historyList"></div>
+
+    <button id="clearHistoryBtn" class="control reset">
+      🗑️ Vider l'historique
+    </button>
+  </div>
+</dialog>
+
+<dialog id="statsDialog">
   <div class="history">
     <div class="dialog-head">
       <h2>📊 Statistiques</h2>
@@ -195,14 +204,6 @@
       <p>⚔️ Nombre total de combats</p>
       <strong id="statsTotalFights">0</strong>
     </div>
-  </div>
-    </dialog>
-
-    <div id="historyList"></div>
-
-    <button id="clearHistoryBtn" class="control reset">
-      🗑️ Vider l'historique
-    </button>
   </div>
 </dialog>
   <div id="toast" class="toast" role="status"></div>
