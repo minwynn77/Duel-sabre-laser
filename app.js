@@ -1063,6 +1063,10 @@ function attachLongPress(
 
 function getWinner() {
 
+  if (firstToLimit !== null) {
+    return firstToLimit;
+  }
+
   if (scores.blue > scores.red) {
     return "blue";
   }
