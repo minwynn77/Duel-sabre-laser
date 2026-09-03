@@ -72,6 +72,38 @@ function renderHistory() {
     };
   });
 }
+function renderStats() {
+  const blueName = settings.blueName;
+  const redName = settings.redName;
+
+  let blueWins = 0;
+  let redWins = 0;
+  let bluePoints = 0;
+  let redPoints = 0;
+
+  history.forEach(combat => {
+    if (combat.blueName === blueName) {
+      bluePoints += Number(combat.blueScore) || 0;
+      if (combat.winner === `🏆 ${blueName}`) blueWins++;
+    }
+
+    if (combat.redName === redName) {
+      redPoints += Number(combat.redScore) || 0;
+      if (combat.winner === `🏆 ${redName}`) redWins++;
+    }
+  });
+
+  $("statsBlueName").textContent = blueName;
+  $("statsRedName").textContent = redName;
+
+  $("statsBlueWins").textContent = blueWins;
+  $("statsRedWins").textContent = redWins;
+
+  $("statsBluePoints").textContent = bluePoints;
+  $("statsRedPoints").textContent = redPoints;
+
+  $("statsTotalFights").textContent = history.length;
+}
 function formatTime(ms) {
   ms = Math.max(0, ms);
   const total = Math.ceil(ms / 1000);
@@ -261,6 +293,14 @@ $("resetBtn").onclick = resetCombat;
 $("historyBtn").addEventListener("click", () => {
   renderHistory();
   $("historyDialog").showModal();
+});
+$("statsBtn").addEventListener("click", () => {
+  renderStats();
+  $("statsDialog").showModal();
+});
+
+$("closeStatsBtn").addEventListener("click", () => {
+  $("statsDialog").close();
 });
 
 $("closeHistoryBtn").addEventListener("click", () => {
