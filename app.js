@@ -964,27 +964,6 @@ $("resetStatsBtn").addEventListener(
   }
 );
 
-    if (!history.length) {
-      toast("L'historique est déjà vide.");
-      return;
-    }
-
-    if (
-      confirm(
-        "Supprimer tout l'historique des combats ?"
-      )
-    ) {
-      history = [];
-
-      saveHistory();
-
-      renderHistory();
-
-      toast("Historique supprimé.");
-    }
-  }
-);
-
 /* Correction du score */
 
 $("correctBtn").onclick = () => {
