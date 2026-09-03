@@ -431,10 +431,11 @@ function renderStats() {
   const totalFights =
     $("statsTotalFights");
 
-  if (totalFights) {
+if (totalFights) {
     totalFights.textContent =
-      history.length;
-  }
+      Object.values(fighterStats)
+        .reduce((total, fighter) => total + fighter.fights, 0);
+}
 
   document
     .querySelectorAll(".delete-fighter-stats")
@@ -1828,17 +1829,13 @@ function setupEvents() {
 
           fighterStats = {};
 
-          deletedStats = [];
+deletedStats = [];
 
-          saveFighterStats();
+saveFighterStats();
 
-          saveDeletedStats();
+saveDeletedStats();
 
-          renderStats();
-
-          toast(
-            "Toutes les statistiques ont été réinitialisées."
-          );
+renderStats();
         }
       }
     );
