@@ -1827,9 +1827,9 @@ function setupEvents() {
           )
         ) {
 
-          fighterStats = {};
+          deletedStats = Object.keys(fighterStats);
 
-deletedStats = [];
+fighterStats = {};
 
 saveFighterStats();
 
