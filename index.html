@@ -170,6 +170,33 @@
       <h2>📋 Historique des combats</h2>
       <button id="closeHistoryBtn" class="close-btn" aria-label="Fermer">✕</button>
     </div>
+    <dialog id="statsDialog">
+  <div class="history">
+    <div class="dialog-head">
+      <h2>📊 Statistiques</h2>
+      <button id="closeStatsBtn" class="close-btn" aria-label="Fermer">✕</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stats-card blue">
+        <h3>🔵 <span id="statsBlueName">BLEU</span></h3>
+        <p>Victoires : <strong id="statsBlueWins">0</strong></p>
+        <p>Points marqués : <strong id="statsBluePoints">0</strong></p>
+      </div>
+
+      <div class="stats-card red">
+        <h3>🔴 <span id="statsRedName">ROUGE</span></h3>
+        <p>Victoires : <strong id="statsRedWins">0</strong></p>
+        <p>Points marqués : <strong id="statsRedPoints">0</strong></p>
+      </div>
+    </div>
+
+    <div class="stats-total">
+      <p>⚔️ Nombre total de combats</p>
+      <strong id="statsTotalFights">0</strong>
+    </div>
+  </div>
+    </dialog>
 
     <div id="historyList"></div>
 
