@@ -937,16 +937,20 @@ function addHit(color, zone) {
 
   if (scores[color] >= limit) {
 
-    if (running) {
-      stopTimer();
-    }
-
-    beep("limit");
-
-    showFinish(
-      `${color === "blue" ? settings.blueName : settings.redName} a atteint la limite`
-    );
+  if (firstToLimit === null) {
+    firstToLimit = color;
   }
+
+  if (running) {
+    stopTimer();
+  }
+
+  beep("limit");
+
+  showFinish(
+    `${color === "blue" ? settings.blueName : settings.redName} a atteint la limite`
+  );
+}
 }
 
 
