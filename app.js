@@ -912,6 +912,35 @@ $("closeHistoryBtn").addEventListener(
 $("clearHistoryBtn").addEventListener(
   "click",
   () => {
+    /* Réinitialisation des statistiques */
+
+$("resetStatsBtn").addEventListener(
+  "click",
+  () => {
+
+    if (!Object.keys(fighterStats).length) {
+      toast("Aucune statistique à réinitialiser.");
+      return;
+    }
+
+    if (
+      confirm(
+        "Réinitialiser toutes les statistiques ?\n\nL'historique des combats sera conservé."
+      )
+    ) {
+      fighterStats = {};
+
+      deletedStats = [];
+
+      saveFighterStats();
+      saveDeletedStats();
+
+      renderStats();
+
+      toast("Toutes les statistiques ont été réinitialisées.");
+    }
+  }
+);
 
     if (!history.length) {
       toast("L'historique est déjà vide.");
