@@ -925,9 +925,7 @@ function addHit(color, zone) {
     return;
   }
 
-  counts[color][zone]++;
-
-  scores[color] +=
+  const points =
     Number(settings[color][zone]) || 0;
 
   const limit =
@@ -935,15 +933,23 @@ function addHit(color, zone) {
       ? Number(settings.limitBlue)
       : Number(settings.limitRed);
 
-  if (scores[color] >= limit) {
+  const newScore =
+    scores[color] + points;
+
+  counts[color][zone]++;
+  scores[color] = newScore;
+
+  if (newScore >= limit) {
 
     if (firstToLimit === null) {
       firstToLimit = color;
     }
 
+    finishedPending = true;
+
     stopTimer();
 
-    finishedPending = true;
+    showStatus("Fin du combat");
 
     beep("limit");
 
