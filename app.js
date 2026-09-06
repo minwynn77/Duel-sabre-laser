@@ -1140,14 +1140,24 @@ function showFinish(message) {
       scores.red;
   }
 
+  render();
+
   const dialog =
     $("finishDialog");
 
   if (dialog && !dialog.open) {
-    dialog.showModal();
-  }
 
-  render();
+    setTimeout(() => {
+
+      if (
+        finishedPending &&
+        !dialog.open
+      ) {
+        dialog.showModal();
+      }
+
+    }, 50);
+  }
 }
 
 
