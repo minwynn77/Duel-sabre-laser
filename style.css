@@ -32,7 +32,12 @@ h1 { font-size:clamp(20px,5vw,30px); margin:6px 0 10px; }
 .score { font-size:clamp(42px,10vw,72px); font-weight:950; line-height:1; font-variant-numeric:tabular-nums; }
 .mannequin-wrap { display:flex; justify-content:center; min-height:360px; }
 .mannequin { width:100%; max-width:300px; height:auto; overflow:visible; }
-.zone { cursor:pointer; }
+.zone {
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
 .zone > path, .zone > circle { fill:#ffffffcc; stroke:#374151; stroke-width:3; transition:transform .08s, fill .08s; }
 .blue .zone > path, .blue .zone > circle { fill:#bfdbfe; }
 .red .zone > path, .red .zone > circle { fill:#fecaca; }
