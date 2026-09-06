@@ -430,12 +430,12 @@ function renderStats() {
   }
 
   const totalFights =
-    $("statsTotalFights");
+  $("statsTotalFights");
 
 if (totalFights) {
-    totalFights.textContent =
-      Object.values(fighterStats)
-        .reduce((total, fighter) => total + fighter.fights, 0);
+  totalFights.textContent =
+    Object.values(fighterStats)
+      .reduce((total, fighter) => total + fighter.fights, 0) / 2;
 }
 
   document
