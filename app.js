@@ -1663,6 +1663,15 @@ function setupEvents() {
       saveSettingsFromForm
     );
   }
+  const settingsDialog = $("settingsDialog");
+
+if (settingsDialog) {
+  settingsDialog
+    .querySelector(".close-btn")
+    .addEventListener("click", () => {
+      settingsDialog.close();
+    });
+}
 
 
   /* Fin du combat */
