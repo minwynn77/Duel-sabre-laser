@@ -900,6 +900,7 @@ function resetCombat() {
 
   finishedPending = false;
   combatValidated = false;
+  firstToLimit = null;
 
   const dialog =
     $("finishDialog");
