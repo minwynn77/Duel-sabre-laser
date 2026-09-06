@@ -930,8 +930,6 @@ function addHit(color, zone) {
   scores[color] +=
     Number(settings[color][zone]) || 0;
 
-  render();
-
   const limit =
     color === "blue"
       ? Number(settings.limitBlue)
@@ -939,20 +937,24 @@ function addHit(color, zone) {
 
   if (scores[color] >= limit) {
 
-  if (firstToLimit === null) {
-    firstToLimit = color;
-  }
+    if (firstToLimit === null) {
+      firstToLimit = color;
+    }
 
-  if (running) {
     stopTimer();
+
+    finishedPending = true;
+
+    beep("limit");
+
+    showFinish(
+      `${color === "blue" ? settings.blueName : settings.redName} a atteint la limite`
+    );
+
+    return;
   }
 
-  beep("limit");
-
-  showFinish(
-    `${color === "blue" ? settings.blueName : settings.redName} a atteint la limite`
-  );
-}
+  render();
 }
 
 
