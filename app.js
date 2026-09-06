@@ -989,77 +989,73 @@ function removeHit(color, zone) {
    TOUCHES LONGUES
    ========================= */
 
+
 function attachLongPress(
   element,
   onShort,
   onLong
 ) {
-
   let timer = null;
   let long = false;
 
   const cancel = () => {
-
-    if (timer) {
+    if (timer !== null) {
       clearTimeout(timer);
       timer = null;
     }
   };
 
-
   element.addEventListener(
     "pointerdown",
     event => {
-
       event.preventDefault();
 
+      // On garde le doigt associé à cette zone
+      // même s'il bouge légèrement sur l'écran.
+      try {
+        element.setPointerCapture(event.pointerId);
+      } catch {}
+
       long = false;
+      cancel();
 
-      timer =
-        setTimeout(() => {
+      timer = setTimeout(() => {
+        long = true;
+        timer = null;
 
-          long = true;
-
-          onLong();
-
-          timer = null;
-
-        }, 600);
+        onLong();
+      }, 600);
     }
   );
-
 
   element.addEventListener(
     "pointerup",
     event => {
-
       event.preventDefault();
 
-      if (timer) {
+      cancel();
 
-        clearTimeout(timer);
-        timer = null;
+      try {
+        element.releasePointerCapture(event.pointerId);
+      } catch {}
 
-        if (!long) {
-          onShort();
-        }
+      if (!long) {
+        onShort();
       }
     }
   );
 
-
-  element.addEventListener(
-    "pointerleave",
-    cancel
-  );
-
-
   element.addEventListener(
     "pointercancel",
-    cancel
+    event => {
+      cancel();
+
+      try {
+        element.releasePointerCapture(event.pointerId);
+      } catch {}
+    }
   );
 }
-
 
 /* =========================
    FIN DU COMBAT
