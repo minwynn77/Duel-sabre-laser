@@ -139,6 +139,7 @@ let timerId = null;
 let running = false;
 let finishedPending = false;
 let combatValidated = false;
+let firstToLimit = null;
 
 
 /* =========================
