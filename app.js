@@ -933,6 +933,23 @@ function addHit(color, zone) {
       ? Number(settings.limitBlue)
       : Number(settings.limitRed);
 
+  // Sécurité : impossible d'ajouter des points
+  // si la limite est déjà atteinte.
+  if (scores[color] >= limit) {
+
+    finishedPending = true;
+
+    stopTimer();
+
+    showStatus("Fin du combat");
+
+    showFinish(
+      `${color === "blue" ? settings.blueName : settings.redName} a atteint la limite`
+    );
+
+    return;
+  }
+
   const newScore =
     scores[color] + points;
 
